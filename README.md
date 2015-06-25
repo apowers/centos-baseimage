@@ -1,28 +1,22 @@
-A Docker baseimage, very much in the same vein as Phusion's excellent https://github.com/phusion/baseimage-docker, but for Centos.
+A Docker baseimage for CentOS, similar to https://github.com/phusion/baseimage-docker.
 
-Provides you with:
+The purpose of this image is to provide a platform for testing configuration management
+by providing a clean and fast VM-like environment.
 
-- Runit for managing your daemons
-- An ssh server, so you can log in
-
-Build it
+Build It
 --------
 
-    git clone https://github.com/pokle/centos-baseimage
+    git clone https://github.com/apowers/centos-baseimage
     cd centos-baseimage
-    ./image/build.sh
+    docker build -t centos-baseimage .
 
-This will produce an image called poklet/centos-baseimage
+This will produce an image called centos-baseimage
 
-Running it
+Using It
 ----------
-This image isn't intended to be run as is - it's meant to be the base image for your own images. Never the less, you can still poke around by:
 
-    ./image/run.sh
+From your application directory start the image and get a prompt:
 
-This runs an ephermal container in the foreground. It should print out its IP address when it has finished starting up. Substitute IP-ADDRESS in the following command with that address
+    docker run --rm=false --privileged -v $(pwd):/opt/app -ti centos-baseimage /sbin/run_init -- bash -l
 
-    ./image/ssh.sh IP-ADDRESS
-    
-This shell script uses an insecure ssh key to authenticate with your container.
-
+--privileged is required for many network services to work.
