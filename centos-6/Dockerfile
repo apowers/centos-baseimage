@@ -1,8 +1,7 @@
 FROM centos:6
 
-# Setup environment
+# Setup environment; required by run_init
 RUN mkdir -p /etc/container_environment
-
 
 # EPEL and package update
 RUN yum install -y epel-release
@@ -17,7 +16,7 @@ ADD build/rsyslogd /etc/service/
 # cron
 ADD build/cron /etc/service/
 
-# runit
+# runit for centos6
 ADD build/bin/packagecloud.imeyer.runit.sh /tmp/
 RUN /tmp/packagecloud.imeyer.runit.sh
 RUN yum install -y runit
