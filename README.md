@@ -5,8 +5,7 @@ by providing a clean and fast VM-like environment.
 
 There are two baseimages, one for CentOS 6 using runit and one for CentOS 7 integrating with systemd.
 
-Build It
---------
+# Build It
 
     git clone https://github.com/apowers/centos-baseimage
     cd centos-baseimage/centos-?
@@ -14,10 +13,10 @@ Build It
 
 This will produce an image called centos-baseimage
 
-Using It
-----------
+# Using It
 
-# CentOS 6
+CentOS 6
+------
 
 Start the image and get a prompt:
 
@@ -27,7 +26,8 @@ Start the image and run tests:
 
     docker run --rm --privileged -v $(pwd):/mnt/remote -ti centos-baseimage /sbin/run_init -- /mnt/remote/tests/run.sh
 
-# CentOS 7
+CentOS 7
+------
 
 Start the image and get a prompt:
 

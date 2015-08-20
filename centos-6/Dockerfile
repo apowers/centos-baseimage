@@ -14,6 +14,7 @@ RUN yum install -y rsyslog
 ADD build/rsyslogd /etc/service/
 
 # cron
+RUN yum install -y cronie
 ADD build/cron /etc/service/
 
 # runit for centos6

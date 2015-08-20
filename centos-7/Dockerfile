@@ -6,10 +6,12 @@ ENV container=docker
 RUN yum install -y epel-release
 RUN yum upgrade -y
 
-# rsyslogd
+# rsyslogd and cron
 RUN yum install -y rsyslog
+RUN yum install -y cronie
+#RUN yum install -y sysvinit-tools
 
-# Real systemd for centos7 ; if you want "real" systemd
+# Real systemd for centos7 ; if you want "real" systemd instead of systemd-container
 #RUN yum remove -y systemd-container systemd-container-libs
 #RUN yum install -y systemd systemd-libs
 
