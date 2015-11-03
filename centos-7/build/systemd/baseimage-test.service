@@ -2,7 +2,7 @@
 # Provide a login shell for baseimage
 
 [Unit]
-Description=Root Shell
+Description=Root Test Shell
 After=systemd-user-sessions.service plymouth-quit-wait.service
 Before=getty.target
 
