@@ -9,6 +9,7 @@ There are two baseimages, one for CentOS 6 using runit and one for CentOS 7 inte
 
     git clone https://github.com/apowers/centos-baseimage
     cd centos-baseimage
+    docker pull centos:7
     docker build --rm -t centos-baseimage:6 centos-6/.
     docker build --rm -t centos-baseimage:7 centos-7/.
 

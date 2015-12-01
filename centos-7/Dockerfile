@@ -11,6 +11,9 @@ RUN yum install -y rsyslog
 RUN yum install -y cronie
 RUN yum install -y sysvinit-tools
 
+# File system tools
+RUN yum install -y e2fsprogs
+
 # Real systemd for centos7 ; if you want "real" systemd instead of systemd-container
 RUN yum swap -y -- remove systemd-container systemd-container-libs -- install systemd systemd-libs
 
