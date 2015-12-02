@@ -26,16 +26,20 @@ Start the image and get a prompt:
 
 Start the image and run tests:
 
-    docker run --rm --privileged -v $(pwd):/mnt/remote -ti centos-baseimage:6 /sbin/run_init -- /mnt/remote/tests/run.sh
+    docker run --rm --privileged -v $(pwd):/mnt/remote -ti centos-baseimage:6 /sbin/run_init -- /mnt/remote/tests/run_tests.sh
 
 CentOS 7
 ------
 
 Start the image and get a prompt:
 
-    docker run --rm --privileged -v $(pwd):/mnt/remote -ti centos-baseimage:7 /sbin/run_init systemd.unit=baseimage-shell.service
+    docker run --rm --privileged -v $(pwd):/mnt/remote -ti centos-baseimage:7 /usr/lib/systemd/systemd --unit=baseimage-shell.service
 
 Start the image and run tests: (WIP)
+* test script must be "$(pwd)/test/run_tests.sh" as defined in centos-7/build/systemd/baseimage-test.service
 
-    docker run --rm --privileged -v $(pwd):/mnt/remote -ti centos-baseimage:7 /sbin/run_init systemd.unit=baseimage-test.service
+    docker run --rm --privileged -e "TEST=<some_value>" -v $(pwd):/mnt/remote -ti centos-baseimage:7 /usr/lib/systemd/systemd --unit=baseimage-test.service
 
+BUGS:
+* test script doesn't use docker environment value
+* docker exit code doesn't reflect exit status of tests

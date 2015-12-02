@@ -32,7 +32,7 @@ RUN systemctl set-default multi-user.target
 RUN yum clean all
 
 # init script
-RUN ln -s /usr/lib/systemd/systemd /sbin/run_init
+RUN ln -s /usr/lib/systemd/systemd /start
 ADD /build/systemd/* /etc/systemd/system/
 
 VOLUME [ "/sys/fs/cgroup" ]

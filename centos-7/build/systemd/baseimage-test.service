@@ -2,22 +2,25 @@
 # Provide a login shell for baseimage
 
 [Unit]
-Description=Root Test Shell
+Description=Root Shell
+DefaultDependencies=no
+IgnoreOnIsolate=yes
 After=systemd-user-sessions.service plymouth-quit-wait.service
 Before=getty.target
 
 [Service]
 Environment=HOME=/root
 WorkingDirectory=/root
-ExecStart=-/mnt/remote/test/run.sh $ROLE
-ExecStopPost=-/usr/bin/systemctl poweroff
-Type=idle
-StandardInput=tty-force
+ExecStart=/bin/bash
+ExecStopPost=/usr/bin/systemctl poweroff
+StandardInput=tty
 StandardOutput=inherit
 StandardError=inherit
 KillMode=process
 IgnoreSIGPIPE=no
-SendSIGHUP=yes
+# bash ignores SIGTERM
+KillSignal=SIGHUP
 
-[Install]
-WantedBy=getty.target
+# Test Script
+ExecStart=/mnt/remote/test/run_tests.sh
+
