@@ -15,6 +15,14 @@ There are two baseimages, one for CentOS 6 using runit and one for CentOS 7 inte
 
 This will produce an image called centos-baseimage
 
+## For Red Hat
+The build is slightly different, use the appropiate names appropriatly. Note that rhel is rhel so it won't work "out of the box". After the build add your rhel-base repo then install rsyslog and cronie and commit.
+
+    docker pull rhel
+    docker pull rhel6
+    docker build --rm -t rhel-baseimage:6 rhel-6/.
+    docker build --rm -t rhel-baseimage:7 rhel-7/.
+
 # Using It
 
 CentOS 6

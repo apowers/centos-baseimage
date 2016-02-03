@@ -1,0 +1,22 @@
+#  This file is part of systemd.
+# Provide a login shell for baseimage
+
+[Unit]
+Description=Root Shell
+DefaultDependencies=no
+IgnoreOnIsolate=yes
+After=systemd-user-sessions.service plymouth-quit-wait.service
+Before=getty.target
+
+[Service]
+Environment=HOME=/root
+WorkingDirectory=/root
+ExecStart=/bin/bash
+ExecStopPost=/usr/bin/systemctl poweroff
+StandardInput=tty
+StandardOutput=inherit
+StandardError=inherit
+KillMode=process
+IgnoreSIGPIPE=no
+# bash ignores SIGTERM
+KillSignal=SIGHUP
